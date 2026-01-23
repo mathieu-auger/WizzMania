@@ -1,0 +1,5 @@
+/build*
+/vscode*
+/Qt6*
+/asio*
+.vscode
