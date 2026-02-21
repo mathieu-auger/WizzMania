@@ -117,15 +117,34 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS
+    ${CMAKE_CURRENT_SOURCE_DIR}           # client/
+    ${CMAKE_CURRENT_SOURCE_DIR}/src       # client/src/
+    ${CMAKE_CURRENT_SOURCE_DIR}/ui        # client/ui/
+)
+
+
+set(CONSOLE_CLIENT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../console_client)
+set(COMMON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../src/common)
+
 add_executable(${PROJECT_NAME}
-    main.cpp
-    MainWindow.cpp
-    MainWindow.hpp
+    src/main.cpp
+    src/MainWindow.cpp
+    include/MainWindow.hpp
     MainWindow.ui
+    ${CONSOLE_CLIENT_DIR}/src/HttpClient.cpp 
+    ${COMMON_DIR}/Protocol.cpp 
+    ${COMMON_DIR}/Message.cpp  
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
+    include
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src 
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/common
+    ${COMMON_DIR}  
+    # ${CMAKE_CURRENT_SOURCE_DIR}/../console_client/include
+    ${CONSOLE_CLIENT_DIR}/include 
 )
 
 if(WIN32)
@@ -137,10 +156,11 @@ endif()
 target_link_libraries(${PROJECT_NAME}
     Qt6::Core
     Qt6::Widgets
+    ws2_32  
 )
 
 if(WIN32)
-    # 1. Основні Qt DLL
+    # 1. Main Qt DLL
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${QT_PATH}/bin/Qt6Core.dll"
@@ -150,7 +170,7 @@ if(WIN32)
         COMMENT "Copying Qt DLLs..."
     )
     
-    # 2. Плагіни платформи
+    # 2. Platform plugins (e.g., qwindows.dll)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory
         "$<TARGET_FILE_DIR:${PROJECT_NAME}>/platforms"
