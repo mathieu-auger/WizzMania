@@ -4,8 +4,13 @@ project(wizzmania_console)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(COMMON_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../src/common)
+
 add_executable(wizzmania_console
+    src/HttpClient.cpp
     src/main_console.cpp
+    ${COMMON_SRC_DIR}/Protocol.cpp 
+    ${COMMON_SRC_DIR}/Message.cpp
 )
 
 target_include_directories(wizzmania_console PRIVATE

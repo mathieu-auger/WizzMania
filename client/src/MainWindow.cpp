@@ -1,4 +1,5 @@
-#include "MainWindow.hpp"
+#include "../../client/include/MainWindow.hpp"
+#include "../../console_client/include/HttpClient.hpp"
 
 MainWindow::MainWindow(QWidget *parent) 
     : QMainWindow(parent) {
