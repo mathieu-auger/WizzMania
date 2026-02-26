@@ -156,8 +156,8 @@ std::string HttpClient::ping() {
     return get("/ping");
 }
 
-std::string HttpClient::kiki() {
-    return get("/kiki");
+std::string HttpClient::chat() {
+    return get("/chat");
 }
 
 bool HttpClient::isServerAvailable() {

@@ -64,9 +64,9 @@
 //     showStatus("Ping received");
 // }
 
-// void MainWindow::onKikiButtonClicked() {
-//     std::string response = client->kiki();
-//     ui->chatDisplay->append("→ Kiki: " + QString::fromStdString(response));
+// void MainWindow::onchatButtonClicked() {
+//     std::string response = client->chat();
+//     ui->chatDisplay->append("→ Chat: " + QString::fromStdString(response));
 // }
 
 // void MainWindow::onLoginButtonClicked() {
@@ -130,7 +130,7 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug() << "sendButton:" << ui->sendButton;
     qDebug() << "userList:" << ui->userList;
     qDebug() << "pingButton:" << ui->pingButton;
-    qDebug() << "kikiButton:" << ui->kikiButton;
+    qDebug() << "chatButton:" << ui->chatButton;
     qDebug() << "loginButton:" << ui->loginButton;
     qDebug() << "registerButton:" << ui->registerButton;
     qDebug() << "=========================";
@@ -139,7 +139,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
     connect(ui->messageInput, &QLineEdit::returnPressed, this, &MainWindow::onSendButtonClicked);
     connect(ui->pingButton, &QPushButton::clicked, this, &MainWindow::onPingButtonClicked);
-    connect(ui->kikiButton, &QPushButton::clicked, this, &MainWindow::onKikiButtonClicked);
+    connect(ui->chatButton, &QPushButton::clicked, this, &MainWindow::onChatButtonClicked);
     connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::onLoginButtonClicked);
     connect(ui->registerButton, &QPushButton::clicked, this, &MainWindow::onRegisterButtonClicked);
     
@@ -195,9 +195,9 @@ void MainWindow::onPingButtonClicked() {
     showStatus("Ping received");
 }
 
-void MainWindow::onKikiButtonClicked() {
-    std::string response = client->kiki();
-    ui->chatDisplay->append("→ Kiki: " + QString::fromStdString(response));
+void MainWindow::onChatButtonClicked() {
+    std::string response = client->chat();
+    ui->chatDisplay->append("→ Chat: " + QString::fromStdString(response));
 }
 
 void MainWindow::onLoginButtonClicked() {

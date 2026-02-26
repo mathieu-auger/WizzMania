@@ -2,9 +2,9 @@
 
 void register_routes(crow::SimpleApp& app)
 {
-    CROW_ROUTE(app, "/kiki")
+    CROW_ROUTE(app, "/chat")
     ([]() {
-        return "le plus beau de tout les kikis";
+        return "Le chat dit: miaou!";
     });
 
     

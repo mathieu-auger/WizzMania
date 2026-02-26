@@ -70,9 +70,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="kikiButton">
+       <widget class="QPushButton" name="chatButton">
         <property name="text">
-         <string>Kiki</string>
+         <string>Chat</string>
         </property>
        </widget>
       </item>

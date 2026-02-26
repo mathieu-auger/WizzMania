@@ -24,7 +24,7 @@ public:
     
     // Specific methods for application
     std::string ping();
-    std::string kiki();
+    std::string chat();
     bool isServerAvailable();
 
     std::string registerUser(const std::string& username, const std::string& password);

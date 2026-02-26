@@ -10,7 +10,7 @@ enum class MessageType {
     LOGIN,     
     LOGOUT,    
     REGISTER,   
-    COMMAND,    // (ping, kiki, etc)
+    COMMAND,    // (ping, chat, etc)
     ERROR,      
     WIZZ        
 };

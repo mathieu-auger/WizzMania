@@ -31,7 +31,7 @@ public:
     
     // HTTP endpoints
     static constexpr const char* PING_PATH = "/ping";
-    static constexpr const char* KIKI_PATH = "/kiki";
+    static constexpr const char* CHAT_PATH = "/chat";
     static constexpr const char* REGISTER_PATH = "/register";
     static constexpr const char* LOGIN_PATH = "/login";
     static constexpr const char* SEND_PATH = "/send";

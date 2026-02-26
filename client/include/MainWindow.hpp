@@ -44,7 +44,7 @@ private slots:
     void onRegisterButtonClicked();
     void checkForMessages();       
     void onPingButtonClicked();    
-    void onKikiButtonClicked();
+    void onChatButtonClicked();
 
 private:
     Ui::MainWindow *ui;

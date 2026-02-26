@@ -86,8 +86,8 @@
 //     return get("/ping");
 // }
 
-// std::string HttpClient::kiki() {
-//     return get("/kiki");
+// std::string HttpClient::chat() {
+//     return get("/chat");
 // }
 
 // bool HttpClient::isServerAvailable() {
@@ -103,7 +103,7 @@
 //     std::cout << "Server: http://127.0.0.1:18080" << std::endl;
 //     std::cout << "\nCommands:" << std::endl;
 //     std::cout << "  ping      - test /ping" << std::endl;
-//     std::cout << "  kiki      - test /kiki" << std::endl;
+//     std::cout << "  chat      - test /chat" << std::endl;
 //     std::cout << "  check     - client check" << std::endl;
 //     std::cout << "  help      - this is menu" << std::endl;
 //     std::cout << "  quit      - exit" << std::endl;
@@ -139,8 +139,8 @@
 //         else if (cmd == "ping") {
 //             std::cout << "→ Response: " << client.ping() << std::endl;
 //         }
-//         else if (cmd == "kiki") {
-//             std::cout << "→ Response: " << client.kiki() << std::endl;
+//         else if (cmd == "chat") {
+//             std::cout << "→ Response: " << client.chat() << std::endl;
 //         }
 //         else {
 //             std::cout << "❌ Unknown command. Type 'help' for help." << std::endl;
@@ -162,7 +162,7 @@ void showMenu() {
     std::cout << "Сервер: http://127.0.0.1:18080" << std::endl;
     std::cout << "\nCommands:" << std::endl;
     std::cout << "  ping          - test /ping" << std::endl;
-    std::cout << "  kiki          - test /kiki" << std::endl;
+    std::cout << "  chat          - test /chat" << std::endl;
     std::cout << "  register      - registration" << std::endl;
     std::cout << "  login         - login" << std::endl;
     std::cout << "  send          - send message" << std::endl;
@@ -209,8 +209,8 @@ int main() {
             std::cout << "→ Response: " << client.ping() << std::endl;
         }
         
-        else if (cmd == "kiki") {
-            std::cout << "→ Response: " << client.kiki() << std::endl;
+        else if (cmd == "chat") {
+            std::cout << "→ Response: " << client.chat() << std::endl;
         }
         
         else if (cmd == "register") {
