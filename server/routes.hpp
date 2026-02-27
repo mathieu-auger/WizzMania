@@ -1,6 +1,6 @@
 #pragma once
-
 #include "crow_all.h"
 
-// Enregistre toutes les routes HTTP du serveur
-void register_routes(crow::SimpleApp& app);
+class Database; // forward declaration
+
+void register_routes(crow::SimpleApp& app, Database& db);
