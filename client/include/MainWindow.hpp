@@ -1,19 +1,3 @@
-// #ifndef MAINWINDOW_HPP
-// #define MAINWINDOW_HPP
-
-// #include <QMainWindow>
-// #include <QWidget>
-
-// class MainWindow : public QMainWindow {
-//     Q_OBJECT  
-
-// public:
-//     MainWindow(QWidget *parent = nullptr);
-//     ~MainWindow();
-// };
-
-// #endif // MAINWINDOW_HPP
-
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -44,7 +28,7 @@ private slots:
     void onRegisterButtonClicked();
     void checkForMessages();       
     void onPingButtonClicked();    
-    void onChatButtonClicked();
+    
 
 private:
     Ui::MainWindow *ui;

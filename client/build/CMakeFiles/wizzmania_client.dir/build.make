@@ -93,48 +93,99 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.s:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.s"
 	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\wizzmania_client_autogen\mocs_compilation.cpp -o CMakeFiles\wizzmania_client.dir\wizzmania_client_autogen\mocs_compilation.cpp.s
 
-CMakeFiles/wizzmania_client.dir/main.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
-CMakeFiles/wizzmania_client.dir/main.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
-CMakeFiles/wizzmania_client.dir/main.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/main.cpp
-CMakeFiles/wizzmania_client.dir/main.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/wizzmania_client.dir/main.cpp.obj"
-	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/main.cpp.obj -MF CMakeFiles\wizzmania_client.dir\main.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\main.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\main.cpp
+CMakeFiles/wizzmania_client.dir/src/main.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
+CMakeFiles/wizzmania_client.dir/src/main.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
+CMakeFiles/wizzmania_client.dir/src/main.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src/main.cpp
+CMakeFiles/wizzmania_client.dir/src/main.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/wizzmania_client.dir/src/main.cpp.obj"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/src/main.cpp.obj -MF CMakeFiles\wizzmania_client.dir\src\main.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\src\main.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\main.cpp
 
-CMakeFiles/wizzmania_client.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/main.cpp.i"
-	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\main.cpp > CMakeFiles\wizzmania_client.dir\main.cpp.i
+CMakeFiles/wizzmania_client.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/src/main.cpp.i"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\main.cpp > CMakeFiles\wizzmania_client.dir\src\main.cpp.i
 
-CMakeFiles/wizzmania_client.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/main.cpp.s"
-	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\main.cpp -o CMakeFiles\wizzmania_client.dir\main.cpp.s
+CMakeFiles/wizzmania_client.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/src/main.cpp.s"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\main.cpp -o CMakeFiles\wizzmania_client.dir\src\main.cpp.s
 
-CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
-CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
-CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/MainWindow.cpp
-CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj"
-	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj -MF CMakeFiles\wizzmania_client.dir\MainWindow.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\MainWindow.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\MainWindow.cpp
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src/MainWindow.cpp
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj -MF CMakeFiles\wizzmania_client.dir\src\MainWindow.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\src\MainWindow.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\MainWindow.cpp
 
-CMakeFiles/wizzmania_client.dir/MainWindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/MainWindow.cpp.i"
-	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\MainWindow.cpp > CMakeFiles\wizzmania_client.dir\MainWindow.cpp.i
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.i"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\MainWindow.cpp > CMakeFiles\wizzmania_client.dir\src\MainWindow.cpp.i
 
-CMakeFiles/wizzmania_client.dir/MainWindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/MainWindow.cpp.s"
-	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\MainWindow.cpp -o CMakeFiles\wizzmania_client.dir\MainWindow.cpp.s
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.s"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\MainWindow.cpp -o CMakeFiles\wizzmania_client.dir\src\MainWindow.cpp.s
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj -MF CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.i"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp > CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp.i
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.s"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp -o CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\console_client\src\HttpClient.cpp.s
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj -MF CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.i"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp > CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp.i
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.s"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp -o CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp.s
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj: CMakeFiles/wizzmania_client.dir/flags.make
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj: CMakeFiles/wizzmania_client.dir/includes_CXX.rsp
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj: C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj: CMakeFiles/wizzmania_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj -MF CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp.obj.d -o CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp.obj -c C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.i"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp > CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp.i
+
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.s"
+	C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp -o CMakeFiles\wizzmania_client.dir\C_\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp.s
 
 # Object files for target wizzmania_client
 wizzmania_client_OBJECTS = \
 "CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.obj" \
-"CMakeFiles/wizzmania_client.dir/main.cpp.obj" \
-"CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj"
+"CMakeFiles/wizzmania_client.dir/src/main.cpp.obj" \
+"CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj" \
+"CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj" \
+"CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj" \
+"CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj"
 
 # External object files for target wizzmania_client
 wizzmania_client_EXTERNAL_OBJECTS =
 
 wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.obj
-wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/main.cpp.obj
-wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj
+wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/src/main.cpp.obj
+wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj
+wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj
+wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj
+wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj
 wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/build.make
 wizzmania_client.exe: C:/Program\ Files/msys64/mingw64/lib/libQt6Widgets.dll.a
 wizzmania_client.exe: C:/Program\ Files/msys64/mingw64/lib/libQt6Gui.dll.a
@@ -143,7 +194,7 @@ wizzmania_client.exe: C:/Program\ Files/msys64/mingw64/lib/libQt6EntryPoint.a
 wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/linkLibs.rsp
 wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/objects1.rsp
 wizzmania_client.exe: CMakeFiles/wizzmania_client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable wizzmania_client.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable wizzmania_client.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\wizzmania_client.dir\link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Copying Qt DLLs..."
 	"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "C:/Program Files/msys64/mingw64/bin/Qt6Core.dll" "C:/Program Files/msys64/mingw64/bin/Qt6Gui.dll" "C:/Program Files/msys64/mingw64/bin/Qt6Widgets.dll" C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/build

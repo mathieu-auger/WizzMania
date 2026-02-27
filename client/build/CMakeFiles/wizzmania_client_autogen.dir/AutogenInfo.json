@@ -255,9 +255,21 @@
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/MainWindow.hpp",
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/include/MainWindow.hpp",
 			"MU",
-			"EWIEGA46WW/moc_MainWindow.cpp",
+			"6YEA5652QU/moc_MainWindow.cpp",
+			null
+		],
+		[
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp",
+			"MU",
+			"UVHWW73WF2/moc_Message.cpp",
+			null
+		],
+		[
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.hpp",
+			"MU",
+			"UVHWW73WF2/moc_Protocol.cpp",
 			null
 		]
 	],
@@ -290,7 +302,11 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/include",
 		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client",
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src",
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common",
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/include",
 		"C:/Program Files/msys64/mingw64/include/qt6/QtCore",
 		"C:/Program Files/msys64/mingw64/include/qt6",
 		"C:/Program Files/msys64/mingw64/share/qt6/mkspecs/win32-g++",
@@ -337,18 +353,38 @@
 	"SOURCES" : 
 	[
 		[
-			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/MainWindow.cpp",
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src/MainWindow.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/main.cpp",
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src/main.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp",
 			"MU",
 			null
 		]
 	],
 	"UIC_OPTIONS" : [],
-	"UIC_SEARCH_PATHS" : [],
+	"UIC_SEARCH_PATHS" : 
+	[
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client",
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src",
+		"C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/ui"
+	],
 	"UIC_SKIP" : [],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : true,

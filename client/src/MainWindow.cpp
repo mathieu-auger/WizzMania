@@ -1,111 +1,3 @@
-// #include "MainWindow.hpp"
-// #include "ui_MainWindow.h"
-// #include <QVBoxLayout>
-// #include <QHBoxLayout>
-// #include <QLabel>
-// #include <QMessageBox>
-// #include <QInputDialog>
-
-// MainWindow::MainWindow(QWidget *parent)
-//     : QMainWindow(parent)
-//     , ui(new Ui::MainWindow)
-//     , client(new HttpClient()) 
-//     , messageTimer(new QTimer(this))
-// {
-//     ui->setupUi(this);  // ← ЦЕ СТВОРЮЄ UI З .ui ФАЙЛУ
-    
-//     // ВИДАЛІТЬ setupUI() - він більше не потрібен!
-    
-//     // Timer setup to check for new messages every second
-//     connect(messageTimer, &QTimer::timeout, this, &MainWindow::checkForMessages);
-//     messageTimer->start(1000); 
-    
-//     // Server availability check
-//     if (client->isServerAvailable()) {
-//         showStatus("✅ Server is available");
-//     } else {
-//         showStatus("❌ Server is not responding", true);
-//     }
-// }
-
-// MainWindow::~MainWindow() {
-//     delete ui;
-//     delete client;
-// }
-
-// // ВИДАЛІТЬ ФУНКЦІЮ setupUI() - вона більше не потрібна!
-
-// void MainWindow::onSendButtonClicked() {
-//     QString text = ui->messageInput->text().trimmed();  // ← використовуйте ui->
-//     if (text.isEmpty() || currentUser.isEmpty()) {
-//         if (currentUser.isEmpty()) {
-//             QMessageBox::warning(this, "Error", "Please login first!");
-//         }
-//         return;
-//     }
-    
-//     std::string response = client->sendMessage(text.toStdString(), currentUser.toStdString());
-//     ui->chatDisplay->append("You: " + text);  // ← використовуйте ui->
-//     ui->messageInput->clear();
-// }
-
-// void MainWindow::checkForMessages() {
-//     if (currentUser.isEmpty()) return;
-    
-//     std::string response = client->getMessages();
-//     if (!response.empty() && response != "404 Not Found") {
-//         ui->chatDisplay->append(QString::fromStdString(response));  // ← використовуйте ui->
-//     }
-// }
-
-// void MainWindow::onPingButtonClicked() {
-//     std::string response = client->ping();
-//     ui->chatDisplay->append("→ Ping: " + QString::fromStdString(response));
-//     showStatus("Ping received");
-// }
-
-// void MainWindow::onchatButtonClicked() {
-//     std::string response = client->chat();
-//     ui->chatDisplay->append("→ Chat: " + QString::fromStdString(response));
-// }
-
-// void MainWindow::onLoginButtonClicked() {
-//     bool ok;
-//     QString username = QInputDialog::getText(this, "Login", "Username:", QLineEdit::Normal, "", &ok);
-//     if (!ok || username.isEmpty()) return;
-    
-//     QString password = QInputDialog::getText(this, "Login", "Password:", QLineEdit::Password, "", &ok);
-//     if (!ok || password.isEmpty()) return;
-    
-//     std::string response = client->login(username.toStdString(), password.toStdString());
-//     if (response.find("successful") != std::string::npos) {
-//         currentUser = username;
-//         showStatus("✅ Successful login as " + username);
-//         ui->chatDisplay->append("*** You logged in as " + username + " ***");
-//     } else {
-//         showStatus("❌ Error: " + QString::fromStdString(response), true);
-//     }
-// }
-
-// void MainWindow::onRegisterButtonClicked() {
-//     bool ok;
-//     QString username = QInputDialog::getText(this, "Register", "Username:", QLineEdit::Normal, "", &ok);
-//     if (!ok || username.isEmpty()) return;
-    
-//     QString password = QInputDialog::getText(this, "Register", "Password:", QLineEdit::Password, "", &ok);
-//     if (!ok || password.isEmpty()) return;
-    
-//     std::string response = client->registerUser(username.toStdString(), password.toStdString());
-//     showStatus(QString::fromStdString(response));
-// }
-
-// void MainWindow::showStatus(const QString& msg, bool isError) {
-//     statusBar()->showMessage(msg, 3000);
-//     if (isError) {
-//         qDebug() << "Error:" << msg;
-//     }
-// }
-
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <QVBoxLayout>
@@ -113,7 +5,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QInputDialog>
-#include <QDebug>  // для debug виводу
+#include <QDebug>  // for debug
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -123,38 +15,36 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     
-    // DEBUG: перевірка чи створилися елементи
+    // DEBUG: 
     qDebug() << "=== DEBUG UI ELEMENTS ===";
     qDebug() << "chatDisplay:" << ui->chatDisplay;
     qDebug() << "messageInput:" << ui->messageInput;
     qDebug() << "sendButton:" << ui->sendButton;
     qDebug() << "userList:" << ui->userList;
     qDebug() << "pingButton:" << ui->pingButton;
-    qDebug() << "chatButton:" << ui->chatButton;
     qDebug() << "loginButton:" << ui->loginButton;
     qDebug() << "registerButton:" << ui->registerButton;
     qDebug() << "=========================";
     
-    // Підключення сигналів кнопок
+    // Button connections
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
     connect(ui->messageInput, &QLineEdit::returnPressed, this, &MainWindow::onSendButtonClicked);
     connect(ui->pingButton, &QPushButton::clicked, this, &MainWindow::onPingButtonClicked);
-    connect(ui->chatButton, &QPushButton::clicked, this, &MainWindow::onChatButtonClicked);
     connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::onLoginButtonClicked);
     connect(ui->registerButton, &QPushButton::clicked, this, &MainWindow::onRegisterButtonClicked);
     
-    // Таймер для перевірки повідомлень
+    // Timer for checking new messages every second
     connect(messageTimer, &QTimer::timeout, this, &MainWindow::checkForMessages);
     messageTimer->start(1000); 
     
-    // Перевірка сервера
+    // Server availability check
     if (client->isServerAvailable()) {
         showStatus("✅ Server is available");
     } else {
         showStatus("❌ Server is not responding", true);
     }
     
-    // Встановити мінімальний розмір
+    // Minimum window size
     setMinimumSize(800, 600);
 }
 
@@ -193,11 +83,6 @@ void MainWindow::onPingButtonClicked() {
     std::string response = client->ping();
     ui->chatDisplay->append("→ Ping: " + QString::fromStdString(response));
     showStatus("Ping received");
-}
-
-void MainWindow::onChatButtonClicked() {
-    std::string response = client->chat();
-    ui->chatDisplay->append("→ Chat: " + QString::fromStdString(response));
 }
 
 void MainWindow::onLoginButtonClicked() {

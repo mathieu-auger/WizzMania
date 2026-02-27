@@ -1,9 +1,7 @@
-CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.obj: \
- C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\wizzmania_client_autogen\mocs_compilation.cpp \
- C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\wizzmania_client_autogen\6YEA5652QU/moc_MainWindow.cpp \
- C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/include/MainWindow.hpp \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QMainWindow \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qmainwindow.h \
+CMakeFiles/wizzmania_client.dir/src/main.cpp.obj: \
+ C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\main.cpp \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QApplication \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qapplication.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsglobal.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qtguiglobal.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qglobal.h \
@@ -160,10 +158,9 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qtguiexports.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qtwidgets-config.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsexports.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qobjectdefs.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qnamespace.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcoreapplication.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstring.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qchar.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcompare.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstdlibdetection.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcomparehelpers.h \
@@ -194,14 +191,22 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/vector.tcc \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/array \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/compare \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstringview.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qbytearray.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qrefcount.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qnamespace.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtmetamacros.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qobjectdefs_impl.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qfunctionaltools_impl.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/memory \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stl_raw_storage_iter.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/align.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/unique_ptr.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qarraydata.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qpair.h \
+ C:/Program\ Files/msys64/mingw64/include/string.h \
+ C:/Program\ Files/msys64/mingw64/include/sec_api/string_s.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qarraydatapointer.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qarraydataops.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcontainertools_impl.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qxptype_traits.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/cstring \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/iterator \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stream_iterator.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/iosfwd \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stringfwd.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/postypes.h \
@@ -213,8 +218,17 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Program\ Files/msys64/mingw64/include/_mingw_stat64.h \
  C:/Program\ Files/msys64/mingw64/include/swprintf.inl \
  C:/Program\ Files/msys64/mingw64/include/sec_api/wchar_s.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_base.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/allocated_ptr.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/streambuf_iterator.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/streambuf \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/localefwd.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/clocale \
+ C:/Program\ Files/msys64/mingw64/include/locale.h \
+ C:/Program\ Files/msys64/mingw64/include/stdio.h \
+ C:/Program\ Files/msys64/mingw64/include/sec_api/stdio_s.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/cctype \
+ C:/Program\ Files/msys64/mingw64/include/ctype.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/ios_base.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ext/atomicity.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
@@ -233,39 +247,6 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Program\ Files/msys64/mingw64/include/sched.h \
  C:/Program\ Files/msys64/mingw64/include/pthread_unistd.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ext/concurrence.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_atomic.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/backward/auto_ptr.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/pstl/glue_memory_defs.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qobject.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstring.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qchar.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstringview.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qbytearray.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qrefcount.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qarraydata.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qpair.h \
- C:/Program\ Files/msys64/mingw64/include/string.h \
- C:/Program\ Files/msys64/mingw64/include/sec_api/string_s.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qarraydatapointer.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qarraydataops.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcontainertools_impl.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qxptype_traits.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/cstring \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/iterator \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stream_iterator.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/streambuf_iterator.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/streambuf \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/localefwd.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/clocale \
- C:/Program\ Files/msys64/mingw64/include/locale.h \
- C:/Program\ Files/msys64/mingw64/include/stdio.h \
- C:/Program\ Files/msys64/mingw64/include/sec_api/stdio_s.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/cctype \
- C:/Program\ Files/msys64/mingw64/include/ctype.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/ios_base.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/locale_classes.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/string \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/char_traits.h \
@@ -284,6 +265,17 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/error_constants.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/stdexcept \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/streambuf.tcc \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/memory \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stl_raw_storage_iter.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/align.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/unique_ptr.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_base.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/allocated_ptr.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ext/concurrence.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_atomic.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/backward/auto_ptr.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/pstl/glue_memory_defs.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q20functional.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q20memory.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q17memory.h \
@@ -302,6 +294,13 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstringbuilder.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstringconverter.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qstringconverter_base.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcoreevent.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qbasictimer.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qabstracteventdispatcher.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qobject.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qobjectdefs.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qobjectdefs_impl.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qfunctionaltools_impl.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qlist.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qhashfunctions.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/numeric \
@@ -337,18 +336,23 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/chrono.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ratio \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ctime \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qmargins.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qeventloop.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qdeadlinetimer.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qnativeinterface.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcoreapplication_platform.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qpoint.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcheckedint_impl.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q23utility.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q20utility.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qaction.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qkeysequence.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qicon.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qsize.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qmargins.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qcursor.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qbitmap.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qpixmap.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qpaintdevice.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qrect.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qpoint.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qcolor.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qrgb.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qrgba64.h \
@@ -362,6 +366,9 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/cassert \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q20iterator.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qline.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qguiapplication.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qinputmethod.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qlocale.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qvariant.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qdebug.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtextstream.h \
@@ -380,6 +387,14 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qhash.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qvarlengtharray.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qalloc.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qguiapplication_platform.h \
+ C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/include/MainWindow.hpp \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QMainWindow \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qmainwindow.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qaction.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qkeysequence.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qicon.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qpalette.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qbrush.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qfont.h \
@@ -388,8 +403,6 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qfontinfo.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qfontvariableaxis.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qsizepolicy.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qcursor.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qbitmap.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qtabwidget.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QTextEdit \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qtextedit.h \
@@ -414,7 +427,6 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qitemselectionmodel.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qabstractitemdelegate.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qstyleoption.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qlocale.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qabstractspinbox.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qvalidator.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qregularexpression.h \
@@ -425,15 +437,8 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qrubberband.h \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/QTimer \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtimer.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qbasictimer.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qabstracteventdispatcher.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qeventloop.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qdeadlinetimer.h \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/include/HttpClient.hpp \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.hpp \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp \
- C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtmochelpers.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtmocconstants.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q20algorithm.h
+ C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp

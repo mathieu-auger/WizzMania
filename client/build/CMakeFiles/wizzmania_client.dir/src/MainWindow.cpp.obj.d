@@ -1,6 +1,5 @@
-CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.obj: \
- C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\wizzmania_client_autogen\mocs_compilation.cpp \
- C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\build\wizzmania_client_autogen\6YEA5652QU/moc_MainWindow.cpp \
+CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj: \
+ C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\client\src\MainWindow.cpp \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/include/MainWindow.hpp \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QMainWindow \
  C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qmainwindow.h \
@@ -434,6 +433,54 @@ CMakeFiles/wizzmania_client.dir/wizzmania_client_autogen/mocs_compilation.cpp.ob
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.hpp \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp \
  C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtmochelpers.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qtmocconstants.h \
- C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/q20algorithm.h
+ C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/build/wizzmania_client_autogen/include/ui_MainWindow.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/QVariant \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qvariant.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QApplication \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qapplication.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcoreapplication.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcoreevent.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qnativeinterface.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qcoreapplication_platform.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qguiapplication.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qinputmethod.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qguiapplication_platform.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QHBoxLayout \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qboxlayout.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qlayout.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qlayoutitem.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qboxlayout.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qgridlayout.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QLabel \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qlabel.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtGui/qpicture.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qiodevice.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QLineEdit \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qlineedit.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QListWidget \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qlistwidget.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qmainwindow.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QPushButton \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qpushbutton.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QStatusBar \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qstatusbar.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QTextEdit \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qtextedit.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QVBoxLayout \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/QWidget \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QVBoxLayout \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qboxlayout.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QHBoxLayout \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QLabel \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qlabel.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QMessageBox \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qmessagebox.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qdialog.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qdialogbuttonbox.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/QInputDialog \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QTWIDG~1/qinputdialog.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtWidgets/qlineedit.h \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/QDebug \
+ C:/PROGRA~1/msys64/mingw64/include/qt6/QtCore/qdebug.h

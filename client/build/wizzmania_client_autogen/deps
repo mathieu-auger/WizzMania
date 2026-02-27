@@ -234,6 +234,7 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/pthread_signal.h \
 	C:/Program\ Files/msys64/mingw64/include/pthread_time.h \
 	C:/Program\ Files/msys64/mingw64/include/pthread_unistd.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/QTimer \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/q17memory.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/q20functional.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/q20iterator.h \
@@ -242,6 +243,8 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/q20utility.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/q23type_traits.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/q23utility.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qabstracteventdispatcher.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qabstractitemmodel.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qalgorithms.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qalloc.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qanystringview.h \
@@ -252,6 +255,7 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qatomic.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qatomic_cxx11.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qbasicatomic.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qbasictimer.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qbindingstorage.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qbytearray.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qbytearrayalgorithms.h \
@@ -271,8 +275,10 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qcontiguouscache.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qdarwinhelpers.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qdatastream.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qdeadlinetimer.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qdebug.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qendian.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qeventloop.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qexceptionhandling.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qflags.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qfloat16.h \
@@ -285,11 +291,13 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qhash.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qhashfunctions.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qiodevicebase.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qitemselectionmodel.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qiterable.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qiterator.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qlatin1stringview.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qline.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qlist.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qlocale.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qlogging.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qmalloc.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qmap.h \
@@ -310,6 +318,7 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qprocessordetection.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qrect.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qrefcount.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qregularexpression.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qscopedpointer.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qscopeguard.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qset.h \
@@ -345,6 +354,7 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtenvironmentvariables.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtextstream.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtformat_impl.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtimer.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtmetamacros.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtnoop.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtpreprocessorsupport.h \
@@ -355,6 +365,7 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtversionchecks.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtypeinfo.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qtypes.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qurl.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qutf8stringview.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qvariant.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtCore/qvarlengtharray.h \
@@ -375,23 +386,49 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qkeysequence.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qpaintdevice.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qpalette.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qpen.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qpixelformat.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qpixmap.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qpolygon.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qregion.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qrgb.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qrgba64.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtextcursor.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtextdocument.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtextformat.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtextoption.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtgui-config.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtguiexports.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtguiglobal.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qtransform.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qvalidator.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/QLineEdit \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/QListWidget \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
-	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/QWidget \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/QPushButton \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/QTextEdit \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qabstractbutton.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qabstractitemdelegate.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qabstractitemview.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qabstractscrollarea.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qabstractslider.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qabstractspinbox.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qframe.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qlineedit.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qlistview.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qlistwidget.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qmainwindow.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qpushbutton.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qrubberband.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qsizepolicy.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qslider.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qstyle.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qstyleoption.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qtabbar.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qtabwidget.h \
+	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qtextedit.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qtwidgets-config.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsexports.h \
 	C:/Program\ Files/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsglobal.h \
@@ -557,11 +594,18 @@ wizzmania_client_autogen/timestamp: \
 	C:/Program\ Files/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h \
 	C:/Program\ Files/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdbool.h \
 	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/CMakeLists.txt \
-	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/MainWindow.cpp \
-	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/MainWindow.hpp \
 	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/build/CMakeFiles/4.1.1/CMakeCXXCompiler.cmake \
 	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/build/CMakeFiles/4.1.1/CMakeRCCompiler.cmake \
 	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/build/CMakeFiles/4.1.1/CMakeSystem.cmake \
 	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/build/wizzmania_client_autogen/moc_predefs.h \
-	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/main.cpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/include/MainWindow.hpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src/MainWindow.cpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/src/main.cpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/include/HttpClient.hpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.hpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.hpp \
+	C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/client/MainWindow.ui \
 	C:/Program\ Files/CMake/bin/cmake.exe

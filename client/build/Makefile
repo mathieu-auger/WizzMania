@@ -154,53 +154,125 @@ wizzmania_client_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client_autogen.dir\build.make CMakeFiles/wizzmania_client_autogen.dir/build
 .PHONY : wizzmania_client_autogen/fast
 
-MainWindow.obj: MainWindow.cpp.obj
-.PHONY : MainWindow.obj
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.obj: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.obj
 
 # target to build an object file
-MainWindow.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/MainWindow.cpp.obj
-.PHONY : MainWindow.cpp.obj
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.obj
 
-MainWindow.i: MainWindow.cpp.i
-.PHONY : MainWindow.i
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.i: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.i
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.i
 
 # target to preprocess a source file
-MainWindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/MainWindow.cpp.i
-.PHONY : MainWindow.cpp.i
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.i
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.i
 
-MainWindow.s: MainWindow.cpp.s
-.PHONY : MainWindow.s
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.s: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.s
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.s
 
 # target to generate assembly for a file
-MainWindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/MainWindow.cpp.s
-.PHONY : MainWindow.cpp.s
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.s
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.cpp.s
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.obj: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj
 
-main.i: main.cpp.i
-.PHONY : main.i
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.i: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.i
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/main.cpp.i
-.PHONY : main.cpp.i
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.i
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.s: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.s
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/main.cpp.s
-.PHONY : main.cpp.s
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.s
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.s
+
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.obj: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.obj
+
+# target to build an object file
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj
+
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.i: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.i
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.i
+
+# target to preprocess a source file
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.i
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.i
+
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.s: C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.s
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.s
+
+# target to generate assembly for a file
+C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.s
+.PHONY : C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.s
+
+src/MainWindow.obj: src/MainWindow.cpp.obj
+.PHONY : src/MainWindow.obj
+
+# target to build an object file
+src/MainWindow.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.obj
+.PHONY : src/MainWindow.cpp.obj
+
+src/MainWindow.i: src/MainWindow.cpp.i
+.PHONY : src/MainWindow.i
+
+# target to preprocess a source file
+src/MainWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.i
+.PHONY : src/MainWindow.cpp.i
+
+src/MainWindow.s: src/MainWindow.cpp.s
+.PHONY : src/MainWindow.s
+
+# target to generate assembly for a file
+src/MainWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/src/MainWindow.cpp.s
+.PHONY : src/MainWindow.cpp.s
+
+src/main.obj: src/main.cpp.obj
+.PHONY : src/main.obj
+
+# target to build an object file
+src/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\wizzmania_client.dir\build.make CMakeFiles/wizzmania_client.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 wizzmania_client_autogen/mocs_compilation.obj: wizzmania_client_autogen/mocs_compilation.cpp.obj
 .PHONY : wizzmania_client_autogen/mocs_compilation.obj
@@ -237,12 +309,21 @@ help:
 	@echo ... wizzmania_client_autogen
 	@echo ... wizzmania_client_autogen_timestamp_deps
 	@echo ... wizzmania_client
-	@echo ... MainWindow.obj
-	@echo ... MainWindow.i
-	@echo ... MainWindow.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.obj
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.i
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/console_client/src/HttpClient.s
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.obj
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.i
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.s
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.obj
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.i
+	@echo ... C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.s
+	@echo ... src/MainWindow.obj
+	@echo ... src/MainWindow.i
+	@echo ... src/MainWindow.s
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
 	@echo ... wizzmania_client_autogen/mocs_compilation.obj
 	@echo ... wizzmania_client_autogen/mocs_compilation.i
 	@echo ... wizzmania_client_autogen/mocs_compilation.s

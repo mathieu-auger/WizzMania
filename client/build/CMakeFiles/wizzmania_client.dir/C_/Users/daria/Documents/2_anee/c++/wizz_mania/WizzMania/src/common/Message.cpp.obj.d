@@ -1,6 +1,5 @@
-CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Protocol.cpp.obj: \
- C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.cpp \
- C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Protocol.hpp \
+CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/src/common/Message.cpp.obj: \
+ C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.cpp \
  C:\Users\daria\Documents\2_anee\c++\wizz_mania\WizzMania\src\common\Message.hpp \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/string \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/requires_hosted.h \
@@ -122,14 +121,7 @@ CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/W
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stl_vector.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/stl_bvector.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/vector.tcc \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/sstream \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/istream \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ios \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/exception \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/exception_ptr.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/typeinfo \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/nested_exception.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/iomanip \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/ios_base.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ext/atomicity.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h \
@@ -148,20 +140,35 @@ CMakeFiles/wizzmania_client.dir/C_/Users/daria/Documents/2_anee/c++/wizz_mania/W
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/system_error \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/error_constants.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/stdexcept \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/streambuf \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/streambuf.tcc \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/basic_ios.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/exception \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/exception_ptr.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/typeinfo \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/nested_exception.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/locale \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/locale_facets.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/cwctype \
  C:/Program\ Files/msys64/mingw64/include/wctype.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/streambuf \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/streambuf.tcc \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/streambuf_iterator.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_inline.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/locale_facets.tcc \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/locale_facets_nonio.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/time_members.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/messages_members.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/codecvt.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/locale_facets_nonio.tcc \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/locale_conv.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/quoted_string.h \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/sstream \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/istream \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ios \
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/basic_ios.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/basic_ios.tcc \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/ostream \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/ostream.h \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/ostream.tcc \
  C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/istream.tcc \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/sstream.tcc \
- C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/iostream
+ C:/Program\ Files/msys64/mingw64/include/c++/15.2.0/bits/sstream.tcc

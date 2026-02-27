@@ -17,6 +17,8 @@ add_executable(msn_server
     "${SRC_DIR}/main.cpp"
     "${SRC_DIR}/routes.cpp"
     "${SRC_DIR}/routes.hpp"
+    "${SRC_DIR}/database.hpp"
+    "${SRC_DIR}/database.cpp"
 )
 
 # --- Includes ---
@@ -26,26 +28,41 @@ target_include_directories(msn_server PRIVATE
 )
 
 # --- Asio standalone (Crow 1.3.0 crow_all.h inclut <asio.hpp>) ---
-# Important : aide la compilation à choisir Asio standalone.
+
 target_compile_definitions(msn_server PRIVATE
     ASIO_STANDALONE
     ASIO_NO_DEPRECATED
 )
 
-# Si tu as des erreurs de zlib (compression), décommente :
-# target_compile_definitions(msn_server PRIVATE CROW_DISABLE_COMPRESSION)
-
-# --- Boost (OPTIONNEL ici) ---
-# Ton crow_all.h actuel utilise Asio standalone, donc Boost n'est pas requis
-# pour un /ping minimal. On le garde en option sans bloquer la config.
-find_package(Boost CONFIG QUIET)
-if (Boost_FOUND AND DEFINED Boost_INCLUDE_DIRS)
-    target_include_directories(msn_server PRIVATE ${Boost_INCLUDE_DIRS})
-endif()
+# find_package(Boost CONFIG QUIET)
+# if (Boost_FOUND AND DEFINED Boost_INCLUDE_DIRS)
+#     target_include_directories(msn_server PRIVATE ${Boost_INCLUDE_DIRS})
+# endif()
 
 # --- Windows network library ---
 if (WIN32)
     target_link_libraries(msn_server PRIVATE ws2_32 mswsock iphlpapi)
+endif()
+
+# ===== OpenSSL (SHA256) =====
+find_package(OpenSSL QUIET)
+if (OpenSSL_FOUND AND TARGET OpenSSL::Crypto)
+    target_link_libraries(msn_server PRIVATE OpenSSL::Crypto)
+    if (TARGET OpenSSL::SSL)
+        target_link_libraries(msn_server PRIVATE OpenSSL::SSL)
+    endif()
+else()
+    # fallback MSYS2/MinGW
+    target_link_libraries(msn_server PRIVATE crypto ssl)
+endif()
+
+# ===== SQLite3 =====
+find_package(SQLite3 QUIET)
+if (SQLite3_FOUND AND TARGET SQLite::SQLite3)
+    target_link_libraries(msn_server PRIVATE SQLite::SQLite3)
+else()
+    # fallback MSYS2/MinGW
+    target_link_libraries(msn_server PRIVATE sqlite3)
 endif()
 
 

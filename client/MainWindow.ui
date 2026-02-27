@@ -70,13 +70,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="chatButton">
-        <property name="text">
-         <string>Chat</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="loginButton">
         <property name="text">
          <string>Login</string>
