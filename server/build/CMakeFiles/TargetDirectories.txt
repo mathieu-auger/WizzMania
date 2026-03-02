@@ -1,0 +1,3 @@
+C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/server/build/CMakeFiles/msn_server.dir
+C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/server/build/CMakeFiles/edit_cache.dir
+C:/Users/daria/Documents/2_anee/c++/wizz_mania/WizzMania/server/build/CMakeFiles/rebuild_cache.dir

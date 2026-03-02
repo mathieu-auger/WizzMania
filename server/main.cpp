@@ -5,12 +5,10 @@
 #include <iostream>
 
 
-// ...
-
-
 int main()
 {
     crow::SimpleApp app;
+
 
     Database db("app.db");
 
