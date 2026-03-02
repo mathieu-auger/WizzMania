@@ -3,3 +3,5 @@
 /Qt6*
 /asio*
 .vscode
+
+client/build/*

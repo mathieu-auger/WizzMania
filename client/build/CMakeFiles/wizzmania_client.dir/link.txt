@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\wizzmania_client.dir/objects.a
-C:\PROGRA~1\msys64\mingw64\bin\ar.exe qc CMakeFiles\wizzmania_client.dir/objects.a @CMakeFiles\wizzmania_client.dir\objects1.rsp
-C:\PROGRA~1\msys64\mingw64\bin\C__~1.EXE -mwindows -Wl,--whole-archive CMakeFiles\wizzmania_client.dir/objects.a -Wl,--no-whole-archive -o wizzmania_client.exe -Wl,--out-implib,libwizzmania_client.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\wizzmania_client.dir\linkLibs.rsp
