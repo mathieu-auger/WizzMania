@@ -8,7 +8,7 @@
 int main()
 {
     crow::SimpleApp app;
-
+std::cout << "[DEBUG] CWD = " << std::filesystem::current_path().string() << "\n";
 
     Database db("app.db");
 

@@ -113,7 +113,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 # ---- Qt ----
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network)
 
 # ---- Dossiers ----
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
@@ -124,7 +124,7 @@ add_executable(wizzmania_client
     "${SRC_DIR}/main.cpp"
     "${SRC_DIR}/MainWindow.cpp"
     "${INCLUDE_DIR}/MainWindow.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.ui"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/MainWindow.ui"
 )
 
 # ---- Includes (pour éviter les ../../ dans le code) ----
@@ -140,6 +140,7 @@ target_link_libraries(wizzmania_client PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
+    Qt6::Network
 )
 
 # ---- Déploiement Qt automatique (Windows) ----

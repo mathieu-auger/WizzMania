@@ -23,9 +23,11 @@
 #include <QPushButton>
 #include <QListWidget>
 #include <QTimer>
-#include <vector> 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+
+#include <vector>
 #include "common/Message.hpp"
-#include "HttpClient.hpp"  
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,26 +37,35 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     void onSendButtonClicked();
     void onLoginButtonClicked();
     void onRegisterButtonClicked();
-    void checkForMessages();       
-    void onPingButtonClicked();    
+    void checkForMessages();
+    void onPingButtonClicked();
     void onChatButtonClicked();
 
 private:
     Ui::MainWindow *ui;
-    HttpClient* client;             
-    QString currentUser;
-    QTimer* messageTimer;
-    
-    void setupUI();
-    void appendMessage(const QString& msg, bool isOwn = false);
-    void updateUserList(const std::vector<Message>& messages);
+
+    // ✅ Qt Network
+    QNetworkAccessManager* net_;
+    QString baseUrl_;     // ex: "http://127.0.0.1:18080"
+    QString token_;       // Bearer token après login
+    QString currentUser_;
+    QTimer* messageTimer_;
+
+    // helpers HTTP
+    void httpGet(const QString& path,
+                 const std::function<void(int, const QByteArray&)>& cb);
+
+    void httpPostJson(const QString& path,
+                      const QJsonObject& obj,
+                      const std::function<void(int, const QByteArray&)>& cb);
+
     void showStatus(const QString& msg, bool isError = false);
 };
 
