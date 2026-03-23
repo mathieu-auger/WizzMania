@@ -56,6 +56,15 @@ bool Database::init()
     exec_sql(db_, "PRAGMA foreign_keys=ON;");
 
     const char* schema = R"SQL(
+CREATE TABLE IF NOT EXISTS users (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  username      TEXT NOT NULL UNIQUE,
+  email         TEXT NOT NULL UNIQUE,
+  salt          TEXT NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at    INTEGER NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS friend_requests (
   from_user  TEXT NOT NULL,
   to_user    TEXT NOT NULL,
@@ -93,6 +102,10 @@ ON messages(to_user, from_user, id);
     return exec_sql(db_, schema);
 }
 
+sqlite3* Database::handle() const
+{
+    return db_;
+}
 
 bool Database::areFriends(const std::string& u1,
                           const std::string& u2)
@@ -103,7 +116,10 @@ bool Database::areFriends(const std::string& u1,
         return false;
 
     const char* sql =
-        "SELECT 1 FROM friends WHERE user_a=? AND user_b=?;";
+        "SELECT 1 FROM friends "
+        "WHERE (user_a = ? AND user_b = ?) "
+        "   OR (user_a = ? AND user_b = ?) "
+        "LIMIT 1;";
 
     sqlite3_stmt* st = nullptr;
 
@@ -112,6 +128,8 @@ bool Database::areFriends(const std::string& u1,
 
     sqlite3_bind_text(st, 1, u1.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(st, 2, u2.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 3, u2.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 4, u1.c_str(), -1, SQLITE_TRANSIENT);
 
     bool ok = (sqlite3_step(st) == SQLITE_ROW);
 

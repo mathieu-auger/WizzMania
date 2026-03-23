@@ -13,7 +13,9 @@ public:
     bool areFriends(const std::string& u1,
                     const std::string& u2);
 
+    sqlite3* handle() const;
+
 private:
     sqlite3* db_;
     std::mutex mtx_;
-};
+}; 

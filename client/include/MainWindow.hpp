@@ -1,19 +1,3 @@
-// #ifndef MAINWINDOW_HPP
-// #define MAINWINDOW_HPP
-
-// #include <QMainWindow>
-// #include <QWidget>
-
-// class MainWindow : public QMainWindow {
-//     Q_OBJECT  
-
-// public:
-//     MainWindow(QWidget *parent = nullptr);
-//     ~MainWindow();
-// };
-
-// #endif // MAINWINDOW_HPP
-
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -25,6 +9,8 @@
 #include <QTimer>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #include <vector>
 #include "common/Message.hpp"
@@ -47,18 +33,28 @@ private slots:
     void checkForMessages();
     void onPingButtonClicked();
     void onChatButtonClicked();
-
+    void onWyzzButtonClicked();
+    void onSettingsButtonClicked();
+    
 private:
     Ui::MainWindow *ui;
 
-    // ✅ Qt Network
     QNetworkAccessManager* net_;
-    QString baseUrl_;     // ex: "http://127.0.0.1:18080"
-    QString token_;       // Bearer token après login
+    QString baseUrl_;
+    QString token_;
     QString currentUser_;
+    QString currentChatUser_;
     QTimer* messageTimer_;
+    QString currentUserDisplayName_;
 
-    // helpers HTTP
+    void shakeWindow();
+    void changeDisplayName(const QString& newPseudo);
+    void changeEmail(const QString& newEmail);
+    void changeBirthdate(const QString& newBirthdate);
+    void deleteAccount();
+    void displayMessages(const QJsonArray& messages);
+    QString formatMessageHtml(const QString& from, const QString& text, bool isMine) const;
+
     void httpGet(const QString& path,
                  const std::function<void(int, const QByteArray&)>& cb);
 

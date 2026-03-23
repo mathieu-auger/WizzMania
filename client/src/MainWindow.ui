@@ -77,6 +77,13 @@
        </widget>
       </item>
       <item>
+    <widget class="QPushButton" name="wyzzButton">
+        <property name="text">
+            <string>Wyzz</string>
+        </property>
+    </widget>
+    </item>
+      <item>
        <widget class="QPushButton" name="loginButton">
         <property name="text">
          <string>Login</string>
@@ -90,6 +97,13 @@
         </property>
        </widget>
       </item>
+      <item>
+    <widget class="QPushButton" name="settingsButton">
+        <property name="text">
+            <string>Settings</string>
+        </property>
+    </widget>
+</item>
      </layout>
     </item>
    </layout>

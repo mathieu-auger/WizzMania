@@ -1,5 +1,6 @@
 #include "crow_all.h"
 #include "routes.hpp"
+#include "database.hpp"
 
 #include <string>
 #include <unordered_map>
@@ -15,7 +16,17 @@
 #include <vector>
 #include <optional>
 #include <openssl/sha.h>
+#include <algorithm>
 
+
+struct PendingWyzz
+{
+    std::string from_user;   // username interne de l'expéditeur
+    std::int64_t created_at; // timestamp
+};
+
+std::unordered_map<std::string, std::vector<PendingWyzz>> g_pendingWyzz;
+std::mutex g_pendingWyzzMutex;
 // ===== mémoire =====
 static std::unordered_map<std::string, std::string> g_sessions;
 static std::mutex g_db_mtx;
@@ -25,6 +36,7 @@ static std::unordered_map<std::string, std::string> g_presence; // username -> s
 static std::unordered_map<std::string, std::vector<crow::websocket::connection *>> g_ws_by_user;
 static std::unordered_map<crow::websocket::connection *, std::string> g_user_by_ws;
 static std::mutex g_ws_mtx;
+std::unordered_map<std::string, std::vector<crow::json::wvalue>> g_pending_events;
 
 static void ws_send_to_user(const std::string &username,
                             const std::string &payload)
@@ -349,60 +361,59 @@ static void normalize_pair(std::string &a, std::string &b)
 static bool db_init()
 {
     std::cout << "[DB] g_db pointer = " << g_db << std::endl;
+
     std::string db_path = (std::filesystem::current_path() / "app.db").string();
-std::cout << "[DB] opening " << db_path << std::endl;
+    std::cout << "[DB] opening " << db_path << std::endl;
 
-sqlite3_open(db_path.c_str(), &g_db);
-    if (g_db)
-        return true;
-
-    if (sqlite3_open(DB_PATH, &g_db) != SQLITE_OK)
+    if (sqlite3_open(db_path.c_str(), &g_db) != SQLITE_OK)
     {
-        std::cout << "[DB] cannot open " << DB_PATH << " : " << sqlite3_errmsg(g_db) << "\n";
-        return false; // IMPORTANT
+        std::cout << "[DB] cannot open " << db_path
+                  << " : " << sqlite3_errmsg(g_db) << "\n";
+        return false;
     }
 
     db_exec("PRAGMA journal_mode=WAL;");
     db_exec("PRAGMA synchronous=NORMAL;");
 
     const char *schema = R"SQL(
+
     PRAGMA foreign_keys = ON;
 
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL UNIQUE,
+        salt TEXT NOT NULL,
+        password_hash TEXT NOT NULL,
+        created_at INTEGER NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS friend_requests (
-    from_user  TEXT NOT NULL,
-    to_user    TEXT NOT NULL,
-    created_at INTEGER NOT NULL,
-    PRIMARY KEY(from_user, to_user)
+        from_user  TEXT NOT NULL,
+        to_user    TEXT NOT NULL,
+        created_at INTEGER NOT NULL,
+        PRIMARY KEY(from_user, to_user)
     );
 
     CREATE TABLE IF NOT EXISTS friends (
-    user_a     TEXT NOT NULL,
-    user_b     TEXT NOT NULL,
-    created_at INTEGER NOT NULL,
-    PRIMARY KEY(user_a, user_b)
+        user_a     TEXT NOT NULL,
+        user_b     TEXT NOT NULL,
+        created_at INTEGER NOT NULL,
+        PRIMARY KEY(user_a, user_b)
     );
 
     CREATE TABLE IF NOT EXISTS messages (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    from_user    TEXT NOT NULL,
-    to_user      TEXT NOT NULL,
-    body         TEXT NOT NULL,
-    created_at   INTEGER NOT NULL,
-    delivered_at INTEGER,
-    seen_at      INTEGER
+        id           INTEGER PRIMARY KEY AUTOINCREMENT,
+        from_user    TEXT NOT NULL,
+        to_user      TEXT NOT NULL,
+        body         TEXT NOT NULL,
+        created_at   INTEGER NOT NULL,
+        delivered_at INTEGER,
+        seen_at      INTEGER
     );
 
-    CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT NOT NULL UNIQUE,
-  email TEXT NOT NULL UNIQUE,
-  salt TEXT NOT NULL,
-  password_hash TEXT NOT NULL,
-  created_at INTEGER NOT NULL
-);
-
-CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
-CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+    CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
+    CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
     CREATE INDEX IF NOT EXISTS idx_messages_to_delivered
     ON messages(to_user, delivered_at);
@@ -412,12 +423,15 @@ CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
     CREATE INDEX IF NOT EXISTS idx_messages_pair_id_rev
     ON messages(to_user, from_user, id);
+
     )SQL";
 
     if (!db_exec(schema))
         return false;
 
-    std::cout << "[DB] ready: " << DB_PATH << "\n";
+    db_exec("ALTER TABLE users ADD COLUMN display_name TEXT;");
+
+    std::cout << "[DB] ready: " << db_path << "\n";
     return true;
 }
 
@@ -658,64 +672,84 @@ void register_routes(crow::SimpleApp &app, Database &db)
         return crow::response(500, "DB not ready");
 
     auto j = crow::json::load(req.body);
-    if (!j) return crow::response(400, "Invalid JSON");
+    if (!j)
+        return crow::response(400, "Invalid JSON");
+
     if (!j.has("to") || !j.has("text"))
         return crow::response(400, "Missing field");
 
-    const std::string to   = std::string(j["to"].s());
+    const std::string to_display = std::string(j["to"].s());
     const std::string text = std::string(j["text"].s());
-    if (to.empty() || text.empty())
+
+    if (to_display.empty() || text.empty())
         return crow::response(400, "Empty fields");
 
+    // On interdit l'auto-envoi par pseudo ou par id
+    if (to_display == from)
+        return crow::response(400, "You cannot send a message to yourself");
+
+    // Traduction pseudo (display_name) -> username interne (id sous forme de texte)
+    std::string to;
+    {
+        const char* sql =
+            "SELECT username FROM users WHERE display_name = ? LIMIT 1;";
+
+        sqlite3_stmt* st = nullptr;
+        if (sqlite3_prepare_v2(g_db, sql, -1, &st, nullptr) != SQLITE_OK)
+            return crow::response(500, std::string("DB prepare failed: ") + sqlite3_errmsg(g_db));
+
+        sqlite3_bind_text(st, 1, to_display.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(st) == SQLITE_ROW) {
+            const char* to_c = reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+            if (to_c)
+                to = to_c;
+        }
+
+        sqlite3_finalize(st);
+    }
+
+    if (to.empty())
+        return crow::response(404, "User not found");
+
     if (to == from)
-        return crow::response(400, "Cannot DM yourself");
+        return crow::response(400, "You cannot send a message to yourself");
 
-
-    // ✅ Option Messenger : only friends can DM
+    // Vérifie l'amitié avec l'id interne
     if (!db_are_friends(from, to))
         return crow::response(403, "Not friends");
 
     const char* sql =
-        "INSERT INTO messages(from_user, to_user, body, created_at) VALUES(?,?,?,?);";
+        "INSERT INTO messages(from_user, to_user, body, created_at) "
+        "VALUES(?,?,?,?);";
+
     sqlite3_stmt* st = nullptr;
     if (sqlite3_prepare_v2(g_db, sql, -1, &st, nullptr) != SQLITE_OK)
-        return db_prepare_error("dm/send: insert");
-
-    const long long ts = now_unix();
+        return crow::response(500, std::string("DB prepare failed: ") + sqlite3_errmsg(g_db));
 
     sqlite3_bind_text(st, 1, from.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(st, 2, to.c_str(),   -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 2, to.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(st, 3, text.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_int64(st, 4, (sqlite3_int64)ts);
+    sqlite3_bind_int64(st, 4, (sqlite3_int64)now_unix());
 
-    if (sqlite3_step(st) != SQLITE_DONE) {
-        sqlite3_finalize(st);
-        return crow::response(500, std::string("DB insert failed: ") + sqlite3_errmsg(g_db));
-    }
+    int rc = sqlite3_step(st);
     sqlite3_finalize(st);
 
-    const long long msg_id = (long long)sqlite3_last_insert_rowid(g_db);
+    if (rc != SQLITE_DONE)
+        return crow::response(500, std::string("DB insert failed: ") + sqlite3_errmsg(g_db));
 
-    crow::json::wvalue payload;
-    payload["type"] = "dm";
-    payload["id"]   = msg_id;
-    payload["from"] = from;
-    payload["to"]   = to;
-    payload["text"] = text;
-    payload["ts"]   = ts;
+    crow::json::wvalue res;
+    res["ok"] = true;
+    res["from"] = from;          // id interne
+    res["to"] = to;              // id interne
+    res["to_display"] = to_display; // pseudo utilisé côté UI
+    res["message"] = "sent";
 
-    // push live si connecté
-    ws_send_to_user(to, payload.dump());
-
-    crow::json::wvalue ack;
-    ack["ok"] = true;
-    ack["id"] = msg_id;
-    ack["ts"] = ts;
-    return crow::response(200, ack);
+    return crow::response(200, res);
 });
 
     CROW_ROUTE(app, "/dm/history").methods(crow::HTTPMethod::Get)
-([&](const crow::request& req)
+([&db](const crow::request& req)
 {
     std::string me;
     if (!require_auth(req, me))
@@ -725,23 +759,90 @@ void register_routes(crow::SimpleApp &app, Database &db)
     if (!other_c)
         return crow::response(400, "Missing 'with'");
 
-    std::string other = other_c;
-    if (other.empty())
+    std::string other_display = other_c;
+    if (other_display.empty())
         return crow::response(400, "Empty 'with'");
 
-    if (!db_are_friends(me, other))
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
+
+    // Conversion pseudo (display_name) -> username interne (id texte)
+    std::string other;
+    {
+        const char* sql =
+            "SELECT username FROM users WHERE display_name = ? LIMIT 1;";
+
+        sqlite3_stmt* st = nullptr;
+        if (sqlite3_prepare_v2(conn, sql, -1, &st, nullptr) != SQLITE_OK)
+            return crow::response(500, std::string("DB prepare failed (user lookup): ") + sqlite3_errmsg(conn));
+
+        sqlite3_bind_text(st, 1, other_display.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(st) == SQLITE_ROW) {
+            const char* other_id_c =
+                reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+            if (other_id_c)
+                other = other_id_c;
+        }
+
+        sqlite3_finalize(st);
+    }
+
+    if (other.empty())
+        return crow::response(404, "User not found");
+
+    if (!db.areFriends(me, other))
         return crow::response(403, "Not friends");
 
-    sqlite3_stmt* stmt = nullptr;
-    const char* sql =
-        "SELECT id, from_user, to_user, body, created_at, delivered_at, seen_at "
-        "FROM messages "
-        "WHERE (from_user=? AND to_user=?) "
-        "   OR (from_user=? AND to_user=?) "
-        "ORDER BY id DESC LIMIT 50;";
+    // Récupérer le display_name de "me" pour garder une structure homogène
+    std::string me_display;
+    {
+        const char* sql =
+            "SELECT display_name FROM users WHERE username = ? LIMIT 1;";
 
-    if (sqlite3_prepare_v2(g_db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
-        return crow::response(500, std::string("DB prepare failed: ") + sqlite3_errmsg(g_db));
+        sqlite3_stmt* st = nullptr;
+        if (sqlite3_prepare_v2(conn, sql, -1, &st, nullptr) != SQLITE_OK)
+            return crow::response(500, std::string("DB prepare failed (me lookup): ") + sqlite3_errmsg(conn));
+
+        sqlite3_bind_text(st, 1, me.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(st) == SQLITE_ROW) {
+            const char* me_display_c =
+                reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+            if (me_display_c)
+                me_display = me_display_c;
+        }
+
+        sqlite3_finalize(st);
+    }
+
+    sqlite3_stmt* stmt = nullptr;
+
+    const char* sql = R"SQL(
+SELECT
+    m.id,
+    m.from_user,
+    m.to_user,
+    m.body,
+    m.created_at,
+    m.delivered_at,
+    m.seen_at,
+    uf.display_name AS from_name,
+    ut.display_name AS to_name
+FROM messages m
+LEFT JOIN users uf ON m.from_user = uf.username
+LEFT JOIN users ut ON m.to_user = ut.username
+WHERE
+    (m.from_user = ? AND m.to_user = ?)
+    OR
+    (m.from_user = ? AND m.to_user = ?)
+ORDER BY m.id DESC
+LIMIT 50;
+)SQL";
+
+    if (sqlite3_prepare_v2(conn, sql, -1, &stmt, nullptr) != SQLITE_OK) {
+        return crow::response(500, std::string("DB prepare failed: ") + sqlite3_errmsg(conn));
     }
 
     sqlite3_bind_text(stmt, 1, me.c_str(),    -1, SQLITE_TRANSIENT);
@@ -752,25 +853,438 @@ void register_routes(crow::SimpleApp &app, Database &db)
     crow::json::wvalue out = crow::json::wvalue::list();
     int i = 0;
 
+    // ===== messages normaux =====
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         crow::json::wvalue m;
+
+        const char* from_c = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        const char* to_c = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+        const char* body_c = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+        const char* from_name_c = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
+        const char* to_name_c = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 8));
+
+        std::string from = from_c ? from_c : "";
+        std::string to = to_c ? to_c : "";
+        std::string body = body_c ? body_c : "";
+        std::string from_name = from_name_c ? from_name_c : "";
+        std::string to_name = to_name_c ? to_name_c : "";
+
+        m["type"] = "message";          // <-- ajout
         m["id"] = sqlite3_column_int64(stmt, 0);
-        m["from"] = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
-        m["to"] = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
-        m["body"] = std::string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        m["from"] = from;               // id interne
+        m["to"] = to;                   // id interne
+        m["body"] = body;
         m["created_at"] = sqlite3_column_int64(stmt, 4);
+        m["from_name"] = from_name;     // pseudo affiché
+        m["to_name"] = to_name;         // pseudo affiché
 
-        if (sqlite3_column_type(stmt, 5) == SQLITE_NULL) m["delivered_at"] = nullptr;
-        else m["delivered_at"] = sqlite3_column_int64(stmt, 5);
+        if (sqlite3_column_type(stmt, 5) == SQLITE_NULL)
+            m["delivered_at"] = nullptr;
+        else
+            m["delivered_at"] = sqlite3_column_int64(stmt, 5);
 
-        if (sqlite3_column_type(stmt, 6) == SQLITE_NULL) m["seen_at"] = nullptr;
-        else m["seen_at"] = sqlite3_column_int64(stmt, 6);
+        if (sqlite3_column_type(stmt, 6) == SQLITE_NULL)
+            m["seen_at"] = nullptr;
+        else
+            m["seen_at"] = sqlite3_column_int64(stmt, 6);
 
         out[i++] = std::move(m);
     }
 
     sqlite3_finalize(stmt);
+
+    // ===== wyzz en attente pour CETTE conversation uniquement =====
+    std::vector<PendingWyzz> wyzzForThisChat;
+
+    {
+        std::lock_guard<std::mutex> lock(g_pendingWyzzMutex);
+
+        auto it = g_pendingWyzz.find(me);
+        if (it != g_pendingWyzz.end())
+        {
+            auto& vec = it->second;
+
+            auto splitIt = std::stable_partition(
+                vec.begin(),
+                vec.end(),
+                [&](const PendingWyzz& w)
+                {
+                    return w.from_user != other;
+                }
+            );
+
+            for (auto p = splitIt; p != vec.end(); ++p)
+                wyzzForThisChat.push_back(*p);
+
+            vec.erase(splitIt, vec.end());
+
+            if (vec.empty())
+                g_pendingWyzz.erase(it);
+        }
+    }
+
+    // On les ajoute dans la réponse
+    for (const auto& w : wyzzForThisChat)
+    {
+        crow::json::wvalue evt;
+        evt["type"] = "wyzz";
+        evt["id"] = 0;
+        evt["from"] = w.from_user;           // username interne
+        evt["to"] = me;                      // username interne
+        evt["body"] = "*** WYZZ ***";
+        evt["created_at"] = w.created_at;
+        evt["from_name"] = other_display;    // pseudo affiché de l'autre côté du chat
+        evt["to_name"] = me_display;
+
+        evt["delivered_at"] = nullptr;
+        evt["seen_at"] = nullptr;
+
+        out[i++] = std::move(evt);
+    }
+
     return crow::response(200, out);
+});
+
+CROW_ROUTE(app, "/account/display-name").methods(crow::HTTPMethod::Post)
+([&db](const crow::request& req)
+{
+    std::string me;
+    if (!require_auth(req, me))
+        return crow::response(401, "Unauthorized");
+
+    auto j = crow::json::load(req.body);
+    if (!j || !j.has("display_name"))
+        return crow::response(400, "Invalid JSON");
+
+    std::string newDisplay = std::string(j["display_name"].s());
+    if (newDisplay.empty())
+        return crow::response(400, "Empty display_name");
+
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
+
+    // Vérifier unicité (important)
+    {
+        const char* checkSql =
+            "SELECT 1 FROM users WHERE display_name = ? LIMIT 1;";
+
+        sqlite3_stmt* st = nullptr;
+        sqlite3_prepare_v2(conn, checkSql, -1, &st, nullptr);
+        sqlite3_bind_text(st, 1, newDisplay.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(st) == SQLITE_ROW)
+        {
+            sqlite3_finalize(st);
+            return crow::response(409, "Display name already taken");
+        }
+
+        sqlite3_finalize(st);
+    }
+
+    const char* sql =
+        "UPDATE users SET display_name = ? WHERE username = ?;";
+
+    sqlite3_stmt* stmt = nullptr;
+
+    if (sqlite3_prepare_v2(conn, sql, -1, &stmt, nullptr) != SQLITE_OK)
+        return crow::response(500, sqlite3_errmsg(conn));
+
+    sqlite3_bind_text(stmt, 1, newDisplay.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, me.c_str(), -1, SQLITE_TRANSIENT);
+
+    if (sqlite3_step(stmt) != SQLITE_DONE)
+    {
+        std::string err = sqlite3_errmsg(conn);
+        sqlite3_finalize(stmt);
+        return crow::response(500, err);
+    }
+
+    sqlite3_finalize(stmt);
+
+    std::cout << "[ACCOUNT] display_name updated for " << me << " -> " << newDisplay << "\n";
+
+    return crow::response(200, "Display name updated");
+});
+
+CROW_ROUTE(app, "/account/email").methods(crow::HTTPMethod::Post)
+([&db](const crow::request& req)
+{
+    std::string me;
+    if (!require_auth(req, me))
+        return crow::response(401, "Unauthorized");
+
+    auto j = crow::json::load(req.body);
+    if (!j || !j.has("email"))
+        return crow::response(400, "Invalid JSON");
+
+    std::string newEmail = std::string(j["email"].s());
+    if (newEmail.empty())
+        return crow::response(400, "Empty email");
+
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
+
+    // Vérifier unicité
+    {
+        const char* checkSql =
+            "SELECT 1 FROM users WHERE email = ? LIMIT 1;";
+
+        sqlite3_stmt* st = nullptr;
+        if (sqlite3_prepare_v2(conn, checkSql, -1, &st, nullptr) != SQLITE_OK)
+            return crow::response(500, std::string("DB prepare failed (email check): ") + sqlite3_errmsg(conn));
+
+        sqlite3_bind_text(st, 1, newEmail.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(st) == SQLITE_ROW)
+        {
+            sqlite3_finalize(st);
+            return crow::response(409, "Email already taken");
+        }
+
+        sqlite3_finalize(st);
+    }
+
+    const char* sql =
+        "UPDATE users SET email = ? WHERE username = ?;";
+
+    sqlite3_stmt* stmt = nullptr;
+    if (sqlite3_prepare_v2(conn, sql, -1, &stmt, nullptr) != SQLITE_OK)
+        return crow::response(500, std::string("DB prepare failed (email update): ") + sqlite3_errmsg(conn));
+
+    sqlite3_bind_text(stmt, 1, newEmail.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, me.c_str(), -1, SQLITE_TRANSIENT);
+
+    if (sqlite3_step(stmt) != SQLITE_DONE)
+    {
+        std::string err = sqlite3_errmsg(conn);
+        sqlite3_finalize(stmt);
+        return crow::response(500, err);
+    }
+
+    sqlite3_finalize(stmt);
+
+    std::cout << "[ACCOUNT] email updated for " << me << " -> " << newEmail << "\n";
+    return crow::response(200, "Email updated");
+});
+
+CROW_ROUTE(app, "/account/birthdate").methods(crow::HTTPMethod::Post)
+([&db](const crow::request& req)
+{
+    std::string me;
+    if (!require_auth(req, me))
+        return crow::response(401, "Unauthorized");
+
+    auto j = crow::json::load(req.body);
+    if (!j || !j.has("birthdate"))
+        return crow::response(400, "Invalid JSON");
+
+    std::string newBirthdate = std::string(j["birthdate"].s());
+    if (newBirthdate.empty())
+        return crow::response(400, "Empty birthdate");
+
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
+
+    const char* sql =
+        "UPDATE users SET birthdate = ? WHERE username = ?;";
+
+    sqlite3_stmt* stmt = nullptr;
+    if (sqlite3_prepare_v2(conn, sql, -1, &stmt, nullptr) != SQLITE_OK)
+        return crow::response(500, std::string("DB prepare failed (birthdate update): ") + sqlite3_errmsg(conn));
+
+    sqlite3_bind_text(stmt, 1, newBirthdate.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, me.c_str(), -1, SQLITE_TRANSIENT);
+
+    if (sqlite3_step(stmt) != SQLITE_DONE)
+    {
+        std::string err = sqlite3_errmsg(conn);
+        sqlite3_finalize(stmt);
+        return crow::response(500, err);
+    }
+
+    sqlite3_finalize(stmt);
+
+    std::cout << "[ACCOUNT] birthdate updated for " << me << " -> " << newBirthdate << "\n";
+    return crow::response(200, "Birthdate updated");
+});
+
+CROW_ROUTE(app, "/account/delete").methods(crow::HTTPMethod::Post)
+([&db](const crow::request& req)
+{
+    std::string me;
+    if (!require_auth(req, me))
+        return crow::response(401, "Unauthorized");
+
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
+
+    char* errMsg = nullptr;
+
+    if (sqlite3_exec(conn, "BEGIN TRANSACTION;", nullptr, nullptr, &errMsg) != SQLITE_OK)
+    {
+        std::string err = errMsg ? errMsg : "BEGIN failed";
+        sqlite3_free(errMsg);
+        return crow::response(500, err);
+    }
+
+    auto rollbackAndFail = [&](const std::string& errText)
+    {
+        char* rollbackErr = nullptr;
+        sqlite3_exec(conn, "ROLLBACK;", nullptr, nullptr, &rollbackErr);
+        if (rollbackErr)
+            sqlite3_free(rollbackErr);
+        return crow::response(500, errText);
+    };
+
+    auto execPrepared = [&](const char* sql) -> bool
+    {
+        sqlite3_stmt* stmt = nullptr;
+        if (sqlite3_prepare_v2(conn, sql, -1, &stmt, nullptr) != SQLITE_OK)
+            return false;
+
+        sqlite3_bind_text(stmt, 1, me.c_str(), -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, me.c_str(), -1, SQLITE_TRANSIENT);
+
+        const int rc = sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+        return rc == SQLITE_DONE;
+    };
+
+    // Messages
+    {
+        const char* sql = "DELETE FROM messages WHERE from_user = ? OR to_user = ?;";
+        if (!execPrepared(sql))
+            return rollbackAndFail(std::string("Delete messages failed: ") + sqlite3_errmsg(conn));
+    }
+
+    // Amis
+    {
+        const char* sql = "DELETE FROM friends WHERE user_a = ? OR user_b = ?;";
+        if (!execPrepared(sql))
+            return rollbackAndFail(std::string("Delete friends failed: ") + sqlite3_errmsg(conn));
+    }
+
+    // Demandes d'amis
+    {
+        const char* sql = "DELETE FROM friend_requests WHERE from_user = ? OR to_user = ?;";
+        if (!execPrepared(sql))
+            return rollbackAndFail(std::string("Delete friend requests failed: ") + sqlite3_errmsg(conn));
+    }
+
+    // Utilisateur
+    {
+        sqlite3_stmt* stmt = nullptr;
+        const char* sql = "DELETE FROM users WHERE username = ?;";
+        if (sqlite3_prepare_v2(conn, sql, -1, &stmt, nullptr) != SQLITE_OK)
+            return rollbackAndFail(std::string("Prepare user delete failed: ") + sqlite3_errmsg(conn));
+
+        sqlite3_bind_text(stmt, 1, me.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(stmt) != SQLITE_DONE)
+        {
+            sqlite3_finalize(stmt);
+            return rollbackAndFail(std::string("Delete user failed: ") + sqlite3_errmsg(conn));
+        }
+
+        sqlite3_finalize(stmt);
+    }
+
+    if (sqlite3_exec(conn, "COMMIT;", nullptr, nullptr, &errMsg) != SQLITE_OK)
+    {
+        std::string err = errMsg ? errMsg : "COMMIT failed";
+        sqlite3_free(errMsg);
+        return crow::response(500, err);
+    }
+
+    // Nettoyage mémoire des wyzz
+    {
+        std::lock_guard<std::mutex> lock(g_pendingWyzzMutex);
+
+        g_pendingWyzz.erase(me);
+
+        for (auto it = g_pendingWyzz.begin(); it != g_pendingWyzz.end(); ++it)
+        {
+            auto& vec = it->second;
+            vec.erase(
+                std::remove_if(
+                    vec.begin(),
+                    vec.end(),
+                    [&](const PendingWyzz& w)
+                    {
+                        return w.from_user == me;
+                    }
+                ),
+                vec.end()
+            );
+        }
+    }
+
+    std::cout << "[ACCOUNT] deleted user " << me << "\n";
+    return crow::response(200, "Account deleted");
+});
+
+CROW_ROUTE(app, "/wyzz").methods(crow::HTTPMethod::Post)
+([&db](const crow::request& req)
+{
+    std::string me;
+    if (!require_auth(req, me))
+        return crow::response(401, "Unauthorized");
+
+    auto j = crow::json::load(req.body);
+    if (!j || !j.has("to"))
+        return crow::response(400, "Invalid JSON");
+
+    std::string other_display = std::string(j["to"].s());
+    if (other_display.empty())
+        return crow::response(400, "Empty target");
+
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
+
+    // Conversion pseudo affiché -> username interne
+    std::string other;
+    {
+        const char* sql =
+            "SELECT username FROM users WHERE display_name = ? LIMIT 1;";
+
+        sqlite3_stmt* st = nullptr;
+        if (sqlite3_prepare_v2(conn, sql, -1, &st, nullptr) != SQLITE_OK)
+            return crow::response(
+                500,
+                std::string("DB prepare failed (user lookup): ") + sqlite3_errmsg(conn)
+            );
+
+        sqlite3_bind_text(st, 1, other_display.c_str(), -1, SQLITE_TRANSIENT);
+
+        if (sqlite3_step(st) == SQLITE_ROW)
+        {
+            const char* other_id_c =
+                reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+            if (other_id_c)
+                other = other_id_c;
+        }
+
+        sqlite3_finalize(st);
+    }
+
+    if (other.empty())
+        return crow::response(404, "User not found");
+
+    if (!db.areFriends(me, other))
+        return crow::response(403, "Not friends");
+
+    // Stockage du wyzz en attente pour le receveur
+    {
+        std::lock_guard<std::mutex> lock(g_pendingWyzzMutex);
+        g_pendingWyzz[other].push_back({ me, std::time(nullptr) });
+    }
+
+    return crow::response(200, "Wyzz stored");
 });
 
     CROW_ROUTE(app, "/friends").methods(crow::HTTPMethod::Get)([](const crow::request &req)
@@ -840,74 +1354,88 @@ void register_routes(crow::SimpleApp &app, Database &db)
     }
     return crow::response(200, res); });
 
-    CROW_ROUTE(app, "/friends/request").methods(crow::HTTPMethod::Post)([](const crow::request &req)
-                                                                        {
-                                                                            // auth
-                                                                            std::string me;
-                                                                            if (!require_auth(req, me))
-                                                                                return crow::response(401, "Unauthorized");
+    CROW_ROUTE(app, "/friends/request").methods(crow::HTTPMethod::Post)
+([](const crow::request &req)
+{
+    // auth
+    std::string me;
+    if (!require_auth(req, me))
+        return crow::response(401, "Unauthorized");
 
-                                                                            // db
-                                                                            if (!db_init())
-                                                                                return crow::response(500, "DB not ready");
+    // db
+    if (!db_init())
+        return crow::response(500, "DB not ready");
 
-                                                                            // parse json
-                                                                            auto j = crow::json::load(req.body);
-                                                                            if (!j || !j.has("to"))
-                                                                                return crow::response(400, "Missing field: to");
+    // parse json
+    auto j = crow::json::load(req.body);
+    if (!j || !j.has("to"))
+        return crow::response(400, "Missing field: to");
 
-                                                                            std::string to = std::string(j["to"].s());
-                                                                            if (to.empty())
-                                                                                return crow::response(400, "Empty 'to'");
+    std::string to = std::string(j["to"].s());
+    if (to.empty())
+        return crow::response(400, "Empty 'to'");
 
-                                                                            if (to == me)
-                                                                                return crow::response(400, "Cannot add yourself");
+    if (to == me)
+        return crow::response(400, "Cannot add yourself");
 
-                                                                            // user must exist
-                                                                            if (g_usernames.find(to) == g_usernames.end())
-                                                                                return crow::response(404, "User not found");
+    // user must exist
+    {
+        const char* sql = "SELECT 1 FROM users WHERE username = ? LIMIT 1;";
+        sqlite3_stmt* st = nullptr;
 
-                                                                            // already friends?
-                                                                            if (db_are_friends(me, to))
-                                                                                return crow::response(409, "Already friends");
+        if (sqlite3_prepare_v2(g_db, sql, -1, &st, nullptr) != SQLITE_OK)
+            return db_prepare_error("friends/request user check");
 
-                                                                            // already sent ?
+        sqlite3_bind_text(st, 1, to.c_str(), -1, SQLITE_TRANSIENT);
 
-                                                                            if (db_request_exists(me, to))
-                                                                                return crow::response(409, "Request already sent");
+        bool exists = (sqlite3_step(st) == SQLITE_ROW);
+        sqlite3_finalize(st);
 
-                                                                            // if reverse request exists
-                                                                            if (db_request_exists(to, me))
-                                                                                return crow::response(409, "Incoming request exist. Use /friends/accept");
+        if (!exists)
+            return crow::response(404, "User not found");
+    }
 
-                                                                            // insert request
-                                                                            const char *sql =
-                                                                                "INSERT OR IGNORE INTO friend_requests(from_user,to_user,created_at) VALUES(?,?,?);";
+    // already friends?
+    if (db_are_friends(me, to))
+        return crow::response(409, "Already friends");
 
-                                                                            sqlite3_stmt *st = nullptr;
-                                                                            if (sqlite3_prepare_v2(g_db, sql, -1, &st, nullptr) != SQLITE_OK)
-                                                                                return db_prepare_error("friends/request insert");
-                                                                            std::cout << me.c_str() << std::endl;
-                                                                            std::cout << to.c_str() << std::endl;
+    // already sent ?
+    if (db_request_exists(me, to))
+        return crow::response(409, "Request already sent");
 
-                                                                            sqlite3_bind_text(st, 1, me.c_str(), -1, SQLITE_TRANSIENT);
-                                                                            sqlite3_bind_text(st, 2, to.c_str(), -1, SQLITE_TRANSIENT);
-                                                                            sqlite3_bind_int64(st, 3, (sqlite3_int64)now_unix());
+    // if reverse request exists
+    if (db_request_exists(to, me))
+        return crow::response(409, "Incoming request exist. Use /friends/accept");
 
-                                                                            int rc = sqlite3_step(st);
-                                                                            sqlite3_finalize(st);
+    // insert request
+    const char *sql =
+        "INSERT OR IGNORE INTO friend_requests(from_user,to_user,created_at) VALUES(?,?,?);";
 
-                                                                            if (rc != SQLITE_DONE)
-                                                                                return db_step_error("friends/request insert", rc);
+    sqlite3_stmt *st = nullptr;
+    if (sqlite3_prepare_v2(g_db, sql, -1, &st, nullptr) != SQLITE_OK)
+        return db_prepare_error("friends/request insert");
 
-                                                                            // response Json
-                                                                            crow::json::wvalue res;
-                                                                            res["ok"] = true;
-                                                                            res["from"] = me;
-                                                                            res["to"] = to;
-                                                                            res["message"] = "request sent";
-                                                                            return crow::response(200, res);
-                                                                        });
+    std::cout << me.c_str() << std::endl;
+    std::cout << to.c_str() << std::endl;
+
+    sqlite3_bind_text(st, 1, me.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 2, to.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int64(st, 3, (sqlite3_int64)now_unix());
+
+    int rc = sqlite3_step(st);
+    sqlite3_finalize(st);
+
+    if (rc != SQLITE_DONE)
+        return db_step_error("friends/request insert", rc);
+
+    // response Json
+    crow::json::wvalue res;
+    res["ok"] = true;
+    res["from"] = me;
+    res["to"] = to;
+    res["message"] = "request sent";
+    return crow::response(200, res);
+});
 
     CROW_ROUTE(app, "/friends/accept").methods(crow::HTTPMethod::Post)([](const crow::request &req)
                                                                        {
@@ -1047,53 +1575,83 @@ void register_routes(crow::SimpleApp &app, Database &db)
     CROW_ROUTE(app, "/ping").methods(crow::HTTPMethod::Get)([]
                                                             { return crow::response(200, "pong"); });
 
-    CROW_ROUTE(app, "/register").methods(crow::HTTPMethod::Post)([](const crow::request &req)
-                                                                 {
-    try {
-        if (!db_init())
-            return crow::response(500, "DB not ready");
+    CROW_ROUTE(app, "/register").methods(crow::HTTPMethod::Post)
+([&db](const crow::request& req) {
+    auto j = crow::json::load(req.body);
+    if (!j)
+        return crow::response(400, "Invalid JSON");
 
-        auto j = crow::json::load(req.body);
-        if (!j) return crow::response(400, "Invalid JSON");
+    if (!j.has("email") || !j.has("password") || !j.has("display_name"))
+        return crow::response(400, "Missing field");
 
-        if (!j.has("username") || !j.has("email") || !j.has("password"))
-            return crow::response(400, "Missing fields");
+    const std::string email = std::string(j["email"].s());
+    const std::string password = std::string(j["password"].s());
+    const std::string display_name = std::string(j["display_name"].s());
 
-        std::string username = std::string(j["username"].s());
-        std::string email    = std::string(j["email"].s());
-        std::string password = std::string(j["password"].s());
+    if (email.empty() || password.empty() || display_name.empty())
+        return crow::response(400, "Empty fields");
 
-        if (username.empty() || email.empty() || password.empty())
-            return crow::response(400, "Empty fields");
-            
-        // ✅ Check DB (source of truth)
-        if (db_user_exists_username(username))
-            return crow::response(409, "Username already exists");
-        if (db_user_exists_email(email))
-            return crow::response(409, "Email already exists");
+    sqlite3* conn = db.handle();
+    if (!conn)
+        return crow::response(500, "Database handle is null");
 
-        // Hash
-        std::string salt = random_salt_hex();
-        std::string pwd_hash = hash_password(password, salt);
+    std::string salt = random_salt_hex();
+    std::string pwd_hash = hash_password(password, salt);
+    const long long ts = now_unix();
 
-        const long long ts = now_unix();
+    // username temporaire unique
+    std::string username = "__tmp__" + std::to_string(ts);
 
-        if (!db_insert_user(username, email, salt, pwd_hash, ts))
-            return crow::response(500, std::string("DB insert failed: ") + sqlite3_errmsg(g_db));
+    const char* insert_sql =
+        "INSERT INTO users(username,email,salt,password_hash,display_name,created_at) "
+        "VALUES(?,?,?,?,?,?);";
 
-        // Si tu veux garder tes caches mémoire (facultatif)
-        g_usernames.insert(username);
-        g_emails.insert(email);
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(conn, insert_sql, -1, &st, nullptr) != SQLITE_OK)
+        return crow::response(500, std::string("Prepare insert failed: ") + sqlite3_errmsg(conn));
 
-        crow::json::wvalue res;
-        res["ok"] = true;
-        res["username"] = username;
-        res["created_at"] = ts;
-        return crow::response(201, res);
+    sqlite3_bind_text(st, 1, username.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 2, email.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 3, salt.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 4, pwd_hash.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st, 5, display_name.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int64(st, 6, static_cast<sqlite3_int64>(ts));
+
+    int rc = sqlite3_step(st);
+    sqlite3_finalize(st);
+
+    if (rc != SQLITE_DONE)
+        return crow::response(500, std::string("DB insert failed: ") + sqlite3_errmsg(conn));
+
+    long long user_id = sqlite3_last_insert_rowid(conn);
+    std::string auto_username = std::to_string(user_id);
+
+    const char* update_sql =
+        "UPDATE users SET username = ? WHERE id = ?;";
+
+    sqlite3_stmt* stmt = nullptr;
+    if (sqlite3_prepare_v2(conn, update_sql, -1, &stmt, nullptr) != SQLITE_OK)
+        return crow::response(500, std::string("Prepare update failed: ") + sqlite3_errmsg(conn));
+
+    sqlite3_bind_text(stmt, 1, auto_username.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int64(stmt, 2, static_cast<sqlite3_int64>(user_id));
+
+    if (sqlite3_step(stmt) != SQLITE_DONE) {
+        sqlite3_finalize(stmt);
+        return crow::response(500, std::string("Update username failed: ") + sqlite3_errmsg(conn));
     }
-    catch (const std::exception& e) {
-        return crow::response(500, std::string("Internal error: ") + e.what());
-    } });
+
+    sqlite3_finalize(stmt);
+
+    crow::json::wvalue res;
+    res["ok"] = true;
+    res["id"] = static_cast<int>(user_id);
+    res["username"] = auto_username;
+    res["email"] = email;
+    res["display_name"] = display_name;
+
+    return crow::response(200, res);
+});
 
     CROW_ROUTE(app, "/login").methods(crow::HTTPMethod::Post)([](const crow::request &req)
                                                               {
