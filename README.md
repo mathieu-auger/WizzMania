@@ -89,9 +89,6 @@ cd ../console_client
 
 
 
-
-#French version
-
 ---
 
 # 📄 **README.md - French Version**
