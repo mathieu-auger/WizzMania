@@ -88,6 +88,8 @@ cd ../console_client
 ./wizzmania_console.exe
 
 
+## 🔗 More details about project execution phases
+https://docs.google.com/document/d/1xy6cgk26iz6nTxiJWjeJIEw0FKE-Hy8RnSG6sdz6wZM/edit?pli=1&tab=t.0
 
 ---
 
@@ -181,3 +183,6 @@ cd ../client
 ### Lancer le client console
 cd ../console_client
 ./wizzmania_console.exe
+
+## 🔗 Plus de détails sur les phases d'exécution du projet
+https://docs.google.com/document/d/1xy6cgk26iz6nTxiJWjeJIEw0FKE-Hy8RnSG6sdz6wZM/edit?pli=1&tab=t.0
